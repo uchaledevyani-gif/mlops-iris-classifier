@@ -17,7 +17,11 @@ def train_model (X_train, y_train, n_estimators=100, max_depth=None):
     return model
 
 def evaluate_model (model, X_test, y_test):
-    predictions = model.predict(X_test)
+predictions = model.predict(X_test)
+from sklearn.metrics import classification_report
+print(classification_report(y_test, predctions))
+Stage and commit
+gitadd src/train.py
     acc= accuracy_score(y_test, predictions)
     report = classification_report(y_test, predictions)
     return acc, report
