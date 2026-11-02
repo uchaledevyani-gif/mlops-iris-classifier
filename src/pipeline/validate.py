@@ -53,10 +53,10 @@ def validate(input_path: str) -> pd.DataFrame:
         if not out_of_range.empty:
             errors.append(f"{len(out_of_range)} rows out of expected range for '{col}' ({low}-{high})")
 
-    if errors:
-        for e in errors:
-            logger.error(e)
-        raise DataValidationError(f"Validation failed with {len(errors)} error(s)")
+    if errors:        
+        raise DataValidationError(f"Validation failed with {len(errors)} error(s): "         
+        + "; ".join(errors)
+        ) 
 
     logger.info("Validation PASSED: %d rows, %d columns, all checks satisfied", len(df), df.shape[1])
     return df
